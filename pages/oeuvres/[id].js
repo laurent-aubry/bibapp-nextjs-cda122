@@ -11,14 +11,15 @@ import styles from "../../styles/oeuvre.module.css";
 export async function getStaticProps(staticProps) {
     const params = staticProps.params;
 
-    const res = await fetch('http://localhost:3000/api/oeuvres')
+    const res = await fetch(`http://localhost:3000/api/oeuvres/${params.id}`)
     const oeuvresData = await res.json()
 
     return {
       props: {
-          oeuvres: oeuvresData.data.find((o) => {
-              return o._id.toString() === params.id
-          })
+        oeuvres: oeuvresData.data
+          // oeuvres: oeuvresData.data.find((o) => {
+          //     return o._id.toString() === params.id
+          // })
       }, // will be passed to the page component as props
     }
   }
